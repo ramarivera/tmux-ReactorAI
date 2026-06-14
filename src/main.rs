@@ -1,5 +1,5 @@
 use clap::{Parser, Subcommand};
-use tmux_reactor_ai::{
+use tmux_reactoria::{
     ai::RigAiProvider,
     config::ReactorConfig,
     logging,
@@ -11,13 +11,13 @@ use tmux_reactor_ai::{
 #[derive(Debug, Parser)]
 #[command(version, about = "AI-powered tmux event reactor")]
 struct Cli {
-    #[arg(long, env = "TMUX_REACTOR_AI_CONFIG")]
+    #[arg(long, env = "TMUX_REACTORIA_CONFIG")]
     config: Option<std::path::PathBuf>,
 
-    #[arg(long, env = "TMUX_REACTOR_AI_LOG", default_value = "info")]
+    #[arg(long, env = "TMUX_REACTORIA_LOG", default_value = "info")]
     log: String,
 
-    #[arg(long, env = "TMUX_REACTOR_AI_LOG_JSON")]
+    #[arg(long, env = "TMUX_REACTORIA_LOG_JSON")]
     json_logs: bool,
 
     #[command(subcommand)]

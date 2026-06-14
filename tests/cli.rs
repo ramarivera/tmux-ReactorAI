@@ -3,7 +3,7 @@ use predicates::prelude::*;
 
 #[test]
 fn init_config_outputs_yaml() {
-    Command::cargo_bin("tmux-reactor-ai")
+    Command::cargo_bin("tmux-reactoria")
         .unwrap()
         .arg("init-config")
         .assert()
@@ -13,7 +13,7 @@ fn init_config_outputs_yaml() {
 
 #[test]
 fn label_non_shim_is_command() {
-    Command::cargo_bin("tmux-reactor-ai")
+    Command::cargo_bin("tmux-reactoria")
         .unwrap()
         .args([
             "label",

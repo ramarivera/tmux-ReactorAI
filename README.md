@@ -1,12 +1,12 @@
-# tmux-ReactorAI
+# tmux-ReactorIA
 
-`tmux-ReactorAI` is a Rust tmux plugin that reacts to tmux events, gathers pane
+`tmux-ReactorIA` is a Rust tmux plugin that reacts to tmux events, gathers pane
 context, redacts sensitive scrollback, asks an AI provider for a string, and
 writes that string back into tmux targets such as window names, pane titles, or
 status options.
 
-The repository name intentionally keeps Ramiro's mixed-case `tmux-ReactorAI`
-spelling. The Rust crate follows Cargo conventions as `tmux-reactor-ai`.
+The repository name intentionally keeps Ramiro's mixed-case `tmux-ReactorIA`
+spelling. The Rust crate follows Cargo conventions as `tmux-reactoria`.
 
 ## Prior Art
 
@@ -17,7 +17,7 @@ spelling. The Rust crate follows Cargo conventions as `tmux-reactor-ai`.
 - `accessd/tmux-agent-indicator`: agent state hooks, status icons, title styling,
   animation, and automation polish.
 
-`tmux-ReactorAI` generalizes the title-specific idea into a rule engine:
+`tmux-ReactorIA` generalizes the title-specific idea into a rule engine:
 
 ```yaml
 rules:
@@ -81,13 +81,13 @@ PII. Custom regex patterns are supported through `redaction.extra-patterns`.
 Structured logging uses `tracing`/`tracing-subscriber`.
 
 ```bash
-TMUX_REACTOR_AI_LOG=trace tmux-reactor-ai --json-logs run-once --target @1
+TMUX_REACTORIA_LOG=trace tmux-reactoria --json-logs run-once --target @1
 ```
 
 Expensive diagnostic payloads must use the lazy logging helpers:
 
 ```rust
-tmux_reactor_ai::lazy_trace!(|| format!("prompt:\n{prompt}"));
+tmux_reactoria::lazy_trace!(|| format!("prompt:\n{prompt}"));
 ```
 
 The closure is not evaluated unless the `TRACE` level is enabled.
@@ -97,15 +97,15 @@ The closure is not evaluated unless the `TRACE` level is enabled.
 With TPM:
 
 ```tmux
-set -g @plugin 'ramarivera/tmux-ReactorAI'
-set -g @tmux-reactor-ai-config '~/.config/tmux-reactor-ai/config.yml'
-set -g @tmux-reactor-ai-log 'info'
+set -g @plugin 'ramarivera/tmux-ReactorIA'
+set -g @tmux-reactoria-config '~/.config/tmux-reactoria/config.yml'
+set -g @tmux-reactoria-log 'info'
 ```
 
 Bindings:
 
 - `prefix R`: run enabled rules once for the current window.
-- `prefix C-r`: write the default config to `@tmux-reactor-ai-config`.
+- `prefix C-r`: write the default config to `@tmux-reactoria-config`.
 
 Hooks:
 
@@ -126,7 +126,7 @@ cargo fmt --check
 Safe tmux smoke tests must use an isolated socket:
 
 ```bash
-tmux -L tmux-reactor-ai-test -f /dev/null new-session -d -s tri
-tmux -L tmux-reactor-ai-test source-file ./tmux-reactor-ai.tmux
-tmux -L tmux-reactor-ai-test kill-server
+tmux -L tmux-reactoria-test -f /dev/null new-session -d -s tri
+tmux -L tmux-reactoria-test source-file ./tmux-reactoria.tmux
+tmux -L tmux-reactoria-test kill-server
 ```

@@ -1,10 +1,10 @@
 [package]
-name = "tmux-reactor-ai"
+name = "tmux-reactoria"
 version = "0.1.0"
 edition = "2024"
 description = "A tmux reactor daemon for AI-generated titles, status values, and arbitrary tmux string targets."
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/ramarivera/tmux-ReactorAI"
+repository = "https://github.com/ramarivera/tmux-ReactorIA"
 
 [dependencies]
 anyhow = "1.0.100"

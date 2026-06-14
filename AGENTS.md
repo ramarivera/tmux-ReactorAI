@@ -1,4 +1,4 @@
-# tmux-ReactorAI Agent Instructions
+# tmux-ReactorIA Agent Instructions
 
 This repository builds a standalone Rust tmux plugin. Keep the mixed-case repo
 name, but keep Rust crate names, binaries, modules, and features lowercase
@@ -30,4 +30,4 @@ cargo clippy --all-targets --all-features -- -D warnings
 ```
 
 For tmux integration changes, also run an isolated socket smoke test that
-sources `tmux-reactor-ai.tmux`.
+sources `tmux-reactoria.tmux`.
