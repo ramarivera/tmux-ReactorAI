@@ -1,5 +1,10 @@
 set -goq @tmux-reactoria-config "$HOME/.config/tmux-reactoria/config.yml"
 set -goq @tmux-reactoria-log "info"
+set -goq @tmux-reactoria-auto-install "on"
+
+%if "#{==:#{@tmux-reactoria-auto-install},on}"
+run-shell -b 'TMUX_PLUGIN_MANAGER_PATH="${TMUX_PLUGIN_MANAGER_PATH:-}" "#{d:current_file}/scripts/install-binary.sh" >/dev/null 2>&1 || true'
+%endif
 
 bind-key R run-shell "tmux-reactoria --config \"#{@tmux-reactoria-config}\" --log \"#{@tmux-reactoria-log}\" run-once --target \"#{window_id}\""
 bind-key C-r run-shell "tmux-reactoria init-config > \"#{@tmux-reactoria-config}\""

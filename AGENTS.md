@@ -18,6 +18,10 @@ kebab/snake case.
   `lazy_trace!` or an equivalent guard.
 - Live tmux tests must use an isolated socket via `tmux -L <name>` or
   `tmux -S <temp-socket>`. Never kill the default tmux server.
+- TPM plugin sourcing starts `scripts/install-binary.sh` asynchronously when
+  `@tmux-reactoria-auto-install` is `on`. Keep that installer deterministic:
+  version from `Cargo.toml`, lock/state under XDG state, and visible tmux
+  progress messages.
 
 ## Verification
 

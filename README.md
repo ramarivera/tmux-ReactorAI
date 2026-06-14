@@ -100,6 +100,20 @@ With TPM:
 set -g @plugin 'ramarivera/tmux-ReactorIA'
 set -g @tmux-reactoria-config '~/.config/tmux-reactoria/config.yml'
 set -g @tmux-reactoria-log 'info'
+set -g @tmux-reactoria-auto-install 'on'
+```
+
+When TPM sources the plugin, `@tmux-reactoria-auto-install` starts a background
+installer that runs `cargo install --locked tmux-reactoria --version <plugin
+version>` if the matching binary is missing. It reports progress through
+`tmux display-message` and writes deterministic install state to
+`$XDG_STATE_HOME/tmux-reactoria/install-state.env` or
+`~/.local/state/tmux-reactoria/install-state.env`.
+
+Disable it if you prefer to manage the binary yourself:
+
+```tmux
+set -g @tmux-reactoria-auto-install 'off'
 ```
 
 Bindings:

@@ -36,7 +36,18 @@ jobs:
 
       - name: Isolated tmux plugin smoke
         run: |
+          mkdir -p "$HOME/.cargo/bin"
+          cat > "$HOME/.cargo/bin/tmux-reactoria" <<'SH'
+          #!/usr/bin/env sh
+          echo "tmux-reactoria 0.1.0"
+          SH
+          chmod +x "$HOME/.cargo/bin/tmux-reactoria"
           tmux -L tmux-reactoria-ci -f /dev/null new-session -d -s tri 'sleep 60'
           tmux -L tmux-reactoria-ci source-file ./tmux-reactoria.tmux
           tmux -L tmux-reactoria-ci show-hooks -g after-new-window | grep -- '--honor-wait'
           tmux -L tmux-reactoria-ci kill-server
+
+      - name: Installer smoke
+        run: |
+          PATH="$HOME/.cargo/bin:$PATH" TMUX=1 ./scripts/install-binary.sh
+          test -f "${XDG_STATE_HOME:-$HOME/.local/state}/tmux-reactoria/install-state.env"
